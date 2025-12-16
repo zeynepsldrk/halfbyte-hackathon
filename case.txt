@@ -19,3 +19,4 @@ DevOps
 • WebSocket düğümü replikasyonu ve yapışkan oturum yönetimi.
 • İzleme ve otomatik ölçeklendirme.
 • Yedekleme testi biçimi.
+

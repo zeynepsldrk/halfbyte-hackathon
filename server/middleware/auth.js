@@ -1,0 +1,18 @@
+const jwt = require('jsonwebtoken');
+
+module.exports = function (req, res, next) {
+    // Token'ı header'dan al (Bearer <token>)
+    const token = req.header('Authorization')?.replace('Bearer ', '');
+
+    if (!token) {
+        return res.status(401).json({ message: 'Erişim reddedildi. Token yok.' });
+    }
+
+    try {
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = verified; // { id: ..., username: ... }
+        next();
+    } catch (err) {
+        res.status(400).json({ message: 'Geçersiz Token.' });
+    }
+};

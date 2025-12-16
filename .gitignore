@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Build Output
+dist/
+build/
+
+# Documentation & Plans
+case.txt
+project_plan.md
