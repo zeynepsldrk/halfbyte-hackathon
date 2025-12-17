@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quenote - Your Quizzes</title>
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
+</head>
+<body>
+    <section class="header">
+        <a href="index.html"><img src="images/logo.png"></a>
+        <div class="text-box">
+            <h1>Recently Created Quizzes</h1>
+            <p>Select a quiz to start practicing</p>
+            
+            <!-- Quiz Grid -->
+            <div class="quiz-grid">
+                <!-- Create New Quiz Card -->
+                <div class="quiz-card create-card" onclick="createNewQuiz()">
+                    <div class="create-icon">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <p>Click to create new quizzes.</p>
+                </div>
+                
+                <!-- Existing Quiz Cards -->
+                <div class="quiz-card" onclick="openQuiz('quiz1')">
+                    <div class="quiz-icon">
+                        <i class="fa-solid fa-clipboard-question"></i>
+                    </div>
+                    <h3>JavaScript Basics</h3>
+                    <p class="quiz-info">10 Questions</p>
+                </div>
+                
+                <div class="quiz-card" onclick="openQuiz('quiz2')">
+                    <div class="quiz-icon">
+                        <i class="fa-solid fa-clipboard-question"></i>
+                    </div>
+                    <h3>Data Structures</h3>
+                    <p class="quiz-info">15 Questions</p>
+                </div>
+                
+                <div class="quiz-card" onclick="openQuiz('quiz3')">
+                    <div class="quiz-icon">
+                        <i class="fa-solid fa-clipboard-question"></i>
+                    </div>
+                    <h3>Python Functions</h3>
+                    <p class="quiz-info">8 Questions</p>
+                </div>
+                
+                <div class="quiz-card" onclick="openQuiz('quiz4')">
+                    <div class="quiz-icon">
+                        <i class="fa-solid fa-clipboard-question"></i>
+                    </div>
+                    <h3>SQL Queries</h3>
+                    <p class="quiz-info">12 Questions</p>
+                </div>
+                
+                <div class="quiz-card" onclick="openQuiz('quiz5')">
+                    <div class="quiz-icon">
+                        <i class="fa-solid fa-clipboard-question"></i>
+                    </div>
+                    <h3>REST API Design</h3>
+                    <p class="quiz-info">10 Questions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        
+        function showMenu(){
+            navLinks.style.right = "0";
+            document.body.classList.add('sidebar-open');
+        }
+        
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+            document.body.classList.remove('sidebar-open');
+        }
+        
+        function createNewQuiz(){
+            window.location.href = 'quiz-create.html';
+        }
+        
+        function openQuiz(quizId){
+            window.location.href = `quiz-solve.html?quiz=${quizId}`;
+        }
+    </script>
+</body>
+</html>

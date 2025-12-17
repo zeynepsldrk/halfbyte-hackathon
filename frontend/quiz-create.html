@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quenote - Create Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css">
+</head>
+<body>
+    <section class="header">
+        <a href="index.html"><img src="images/logo.png"></a>
+        <div class="create-quiz-container" id="modeSelection">
+            <div class="create-header">
+                <button class="back-btn" onclick="goBack()">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Quizzes
+                </button>
+                <h1>Create New Quiz</h1>
+                <p>Choose how you want to create your quiz</p>
+            </div>
+            
+            <!-- Mode Selection Cards -->
+            <div class="mode-selection-grid">
+                <div class="mode-card" onclick="selectMode('manual')">
+                    <div class="mode-icon">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                    <h3>Manual Creation</h3>
+                    <p>Create questions manually with full control over content and options</p>
+                </div>
+                
+                <div class="mode-card ai-card" onclick="selectMode('ai')">
+                    <span class="beta-badge">BETA</span>
+                    <div class="mode-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3>AI-Powered Creation</h3>
+                    <p>Generate quiz questions automatically from your notes or topic</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Manual Quiz Creation Form -->
+        <div class="create-quiz-form" id="manualForm" style="display: none;">
+            <div class="form-header">
+                <button class="back-btn" onclick="backToModeSelection()">
+                    <i class="fa-solid fa-arrow-left"></i> Back
+                </button>
+                <h1>Create Quiz Manually</h1>
+            </div>
+            
+            <div class="quiz-info-section">
+                <div class="form-group">
+                    <label for="quizTitle">Quiz Title</label>
+                    <input type="text" id="quizTitle" placeholder="e.g., JavaScript Basics" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="quizDescription">Description (Optional)</label>
+                    <textarea id="quizDescription" rows="2" placeholder="Brief description of your quiz"></textarea>
+                </div>
+            </div>
+            
+            <div class="questions-section" id="questionsSection">
+                <div class="section-header">
+                    <h2>Questions</h2>
+                    <button class="add-question-btn" onclick="addQuestion()">
+                        <i class="fa-solid fa-plus"></i> Add Question
+                    </button>
+                </div>
+                
+                <!-- Question 1 (Default) -->
+                <div class="question-form-card" data-question-num="1">
+                    <div class="question-form-header">
+                        <h3>Question 1</h3>
+                        <button class="delete-question-btn" onclick="deleteQuestion(1)" title="Delete Question">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Question Text</label>
+                        <textarea class="question-text-input" rows="2" placeholder="Enter your question" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Answer Options</label>
+                        <div class="options-list">
+                            <div class="option-input-group">
+                                <input type="radio" name="correct_1" value="a" id="correct_1_a">
+                                <input type="text" class="option-text-input" placeholder="Option A" required>
+                                <label for="correct_1_a" class="correct-label">Correct Answer</label>
+                            </div>
+                            <div class="option-input-group">
+                                <input type="radio" name="correct_1" value="b" id="correct_1_b">
+                                <input type="text" class="option-text-input" placeholder="Option B" required>
+                                <label for="correct_1_b" class="correct-label">Correct Answer</label>
+                            </div>
+                            <div class="option-input-group">
+                                <input type="radio" name="correct_1" value="c" id="correct_1_c">
+                                <input type="text" class="option-text-input" placeholder="Option C" required>
+                                <label for="correct_1_c" class="correct-label">Correct Answer</label>
+                            </div>
+                            <div class="option-input-group">
+                                <input type="radio" name="correct_1" value="d" id="correct_1_d">
+                                <input type="text" class="option-text-input" placeholder="Option D" required>
+                                <label for="correct_1_d" class="correct-label">Correct Answer</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button class="action-button secondary" onclick="backToModeSelection()">Cancel</button>
+                <button class="action-button primary" onclick="saveQuiz()">
+                    <i class="fa-solid fa-save"></i> Save Quiz
+                </button>
+            </div>
+        </div>
+        
+        <!-- AI Quiz Creation Form -->
+        <div class="create-quiz-form" id="aiForm" style="display: none;">
+            <div class="form-header">
+                <button class="back-btn" onclick="backToModeSelection()">
+                    <i class="fa-solid fa-arrow-left"></i> Back
+                </button>
+                <h1>AI-Powered Quiz Creation <span class="beta-badge-inline">BETA</span></h1>
+            </div>
+            
+            <div class="ai-info-banner">
+                <i class="fa-solid fa-circle-info"></i>
+                <p>This feature is currently in beta. AI will generate quiz questions based on your input. Please review questions before saving.</p>
+            </div>
+            
+            <div class="quiz-info-section">
+                <div class="form-group">
+                    <label for="aiQuizTitle">Quiz Title</label>
+                    <input type="text" id="aiQuizTitle" placeholder="e.g., Python Functions" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="aiTopic">Topic or Content</label>
+                    <textarea id="aiTopic" rows="6" placeholder="Enter a topic or paste your notes here. AI will generate questions based on this content." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="questionCount">Number of Questions</label>
+                    <select id="questionCount">
+                        <option value="5">5 Questions</option>
+                        <option value="10" selected>10 Questions</option>
+                        <option value="15">15 Questions</option>
+                        <option value="20">20 Questions</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button class="action-button secondary" onclick="backToModeSelection()">Cancel</button>
+                <button class="action-button primary ai-generate-btn" onclick="generateAIQuiz()">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Quiz
+                </button>
+            </div>
+            
+            <!-- AI Generated Questions Preview (Initially Hidden) -->
+            <div class="ai-preview-section" id="aiPreview" style="display: none;">
+                <div class="section-header">
+                    <h2>Generated Questions</h2>
+                    <p class="preview-note">Review and edit questions before saving</p>
+                </div>
+                
+                <div id="aiGeneratedQuestions">
+                    <!-- AI generated questions will be displayed here -->
+                </div>
+                
+                <div class="form-actions">
+                    <button class="action-button secondary" onclick="regenerateQuiz()">
+                        <i class="fa-solid fa-rotate-right"></i> Regenerate
+                    </button>
+                    <button class="action-button primary" onclick="saveAIQuiz()">
+                        <i class="fa-solid fa-save"></i> Save Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        let questionCounter = 1;
+        
+        function showMenu(){
+            navLinks.style.right = "0";
+            document.body.classList.add('sidebar-open');
+        }
+        
+        function hideMenu(){
+            navLinks.style.right = "-200px";
+            document.body.classList.remove('sidebar-open');
+        }
+        
+        function goBack(){
+            window.location.href = 'quiz-list.html';
+        }
+        
+        function selectMode(mode){
+            document.getElementById('modeSelection').style.display = 'none';
+            
+            if(mode === 'manual'){
+                document.getElementById('manualForm').style.display = 'block';
+            } else if(mode === 'ai'){
+                document.getElementById('aiForm').style.display = 'block';
+            }
+        }
+        
+        function backToModeSelection(){
+            document.getElementById('manualForm').style.display = 'none';
+            document.getElementById('aiForm').style.display = 'none';
+            document.getElementById('aiPreview').style.display = 'none';
+            document.getElementById('modeSelection').style.display = 'block';
+        }
+        
+        function addQuestion(){
+            questionCounter++;
+            const questionsSection = document.getElementById('questionsSection');
+            
+            const questionCard = document.createElement('div');
+            questionCard.className = 'question-form-card';
+            questionCard.setAttribute('data-question-num', questionCounter);
+            
+            questionCard.innerHTML = `
+                <div class="question-form-header">
+                    <h3>Question ${questionCounter}</h3>
+                    <button class="delete-question-btn" onclick="deleteQuestion(${questionCounter})" title="Delete Question">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+                
+                <div class="form-group">
+                    <label>Question Text</label>
+                    <textarea class="question-text-input" rows="2" placeholder="Enter your question" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Answer Options</label>
+                    <div class="options-list">
+                        <div class="option-input-group">
+                            <input type="radio" name="correct_${questionCounter}" value="a" id="correct_${questionCounter}_a">
+                            <input type="text" class="option-text-input" placeholder="Option A" required>
+                            <label for="correct_${questionCounter}_a" class="correct-label">Correct Answer</label>
+                        </div>
+                        <div class="option-input-group">
+                            <input type="radio" name="correct_${questionCounter}" value="b" id="correct_${questionCounter}_b">
+                            <input type="text" class="option-text-input" placeholder="Option B" required>
+                            <label for="correct_${questionCounter}_b" class="correct-label">Correct Answer</label>
+                        </div>
+                        <div class="option-input-group">
+                            <input type="radio" name="correct_${questionCounter}" value="c" id="correct_${questionCounter}_c">
+                            <input type="text" class="option-text-input" placeholder="Option C" required>
+                            <label for="correct_${questionCounter}_c" class="correct-label">Correct Answer</label>
+                        </div>
+                        <div class="option-input-group">
+                            <input type="radio" name="correct_${questionCounter}" value="d" id="correct_${questionCounter}_d">
+                            <input type="text" class="option-text-input" placeholder="Option D" required>
+                            <label for="correct_${questionCounter}_d" class="correct-label">Correct Answer</label>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            questionsSection.appendChild(questionCard);
+        }
+        
+        function deleteQuestion(questionNum){
+            const questionCard = document.querySelector(`[data-question-num="${questionNum}"]`);
+            if(questionCard){
+                // Don't allow deleting if it's the only question
+                const totalQuestions = document.querySelectorAll('.question-form-card').length;
+                if(totalQuestions > 1){
+                    questionCard.remove();
+                } else {
+                    alert('You must have at least one question!');
+                }
+            }
+        }
+        
+        function saveQuiz(){
+            const title = document.getElementById('quizTitle').value;
+            const description = document.getElementById('quizDescription').value;
+            
+            if(!title){
+                alert('Please enter a quiz title!');
+                return;
+            }
+            
+            // Collect all questions
+            const questions = [];
+            const questionCards = document.querySelectorAll('.question-form-card');
+            
+            for(let card of questionCards){
+                const questionText = card.querySelector('.question-text-input').value;
+                const options = Array.from(card.querySelectorAll('.option-text-input')).map(input => input.value);
+                const correctAnswer = card.querySelector('input[type="radio"]:checked');
+                
+                if(!questionText || options.some(opt => !opt) || !correctAnswer){
+                    alert('Please fill in all question fields and select correct answers!');
+                    return;
+                }
+                
+                questions.push({
+                    question: questionText,
+                    options: options,
+                    correct: correctAnswer.value
+                });
+            }
+            
+            // Here you would save to backend/localStorage
+            console.log('Saving quiz:', { title, description, questions });
+            alert('Quiz saved successfully! (This would normally save to your database)');
+            
+            // Redirect back to quiz list
+            window.location.href = 'quiz-list.html';
+        }
+        
+        function generateAIQuiz(){
+            const title = document.getElementById('aiQuizTitle').value;
+            const topic = document.getElementById('aiTopic').value;
+            const count = document.getElementById('questionCount').value;
+            
+            if(!title || !topic){
+                alert('Please fill in the quiz title and topic!');
+                return;
+            }
+            
+            // Show loading state
+            const generateBtn = document.querySelector('.ai-generate-btn');
+            const originalText = generateBtn.innerHTML;
+            generateBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
+            generateBtn.disabled = true;
+            
+            // Simulate AI generation (in real app, this would call your AI API)
+            setTimeout(() => {
+                // Generate mock questions
+                const mockQuestions = [];
+                for(let i = 1; i <= count; i++){
+                    mockQuestions.push({
+                        question: `AI Generated Question ${i} about ${topic.split(' ')[0]}?`,
+                        options: [
+                            `Option A for question ${i}`,
+                            `Option B for question ${i}`,
+                            `Option C for question ${i}`,
+                            `Option D for question ${i}`
+                        ],
+                        correct: 'a'
+                    });
+                }
+                
+                displayAIQuestions(mockQuestions);
+                
+                // Reset button
+                generateBtn.innerHTML = originalText;
+                generateBtn.disabled = false;
+                
+                // Show preview section
+                document.getElementById('aiPreview').style.display = 'block';
+                
+                // Scroll to preview
+                document.getElementById('aiPreview').scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        }
+        
+        function displayAIQuestions(questions){
+            const container = document.getElementById('aiGeneratedQuestions');
+            container.innerHTML = '';
+            
+            questions.forEach((q, index) => {
+                const questionCard = document.createElement('div');
+                questionCard.className = 'question-preview-card';
+                questionCard.innerHTML = `
+                    <div class="question-preview-header">
+                        <span class="question-number">Question ${index + 1}</span>
+                    </div>
+                    <p class="question-preview-text">${q.question}</p>
+                    <div class="options-preview">
+                        ${q.options.map((opt, i) => `
+                            <div class="option-preview ${String.fromCharCode(97 + i) === q.correct ? 'correct-option' : ''}">
+                                <span class="option-letter">${String.fromCharCode(65 + i)}</span>
+                                <span class="option-text">${opt}</span>
+                                ${String.fromCharCode(97 + i) === q.correct ? '<i class="fa-solid fa-check"></i>' : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(questionCard);
+            });
+        }
+        
+        function regenerateQuiz(){
+            if(confirm('Are you sure you want to regenerate? Current questions will be lost.')){
+                document.getElementById('aiPreview').style.display = 'none';
+                generateAIQuiz();
+            }
+        }
+        
+        function saveAIQuiz(){
+            alert('AI Quiz saved successfully! (This would normally save to your database)');
+            window.location.href = 'quiz-list.html';
+        }
+    </script>
+</body>
+</html>
