@@ -18,36 +18,53 @@ Proje temel olarak şu yetenekleri sunar:
 
 ---
 
-## Ekran Görüntüleri (Görseller)
+## Ekran Videosu
 
 
 ---
 
-##  Kurulum (Installation)
+##  Kurulum
 
 Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin.
 
 ### Gereksinimler
-*  Git
+* Node.js (v14 veya üzeri)
+* npm
+* MongoDB
+* Git
 
 ### Adım Adım Kurulum
 
 1.  **Projeyi Klonlayın:**
     ```bash
-    git clone [https://github.com/kullaniciadi/quenote.git](https://github.com/sdadak42/halfbyte-hackathon.git)
-    cd quenote
+    git clone https://github.com/sdadak42/halfbyte-hackathon.git
+    cd halfbyte-hackathon
     ```
 
-2.  **Bağımlılıkları Yükleyin:**
+2.  **Backend Bağımlılıklarını Yükleyin:**
     ```bash
+    cd server
+    npm install
     ```
 
-3.  **Veritabanı Ayarları:**
-    `application.properties` (veya .env) dosyasındaki veritabanı bağlantı bilgilerini kendi sisteminize göre güncelleyin.
+3.  **Ortam Değişkenlerini Ayarlayın:**
+    `server` klasöründe `.env` dosyası oluşturun ve aşağıdaki değişkenleri ekleyin:
+    ```
+    JWT_SECRET=your_secret_key_here
+    MONGODB_URI=mongodb://localhost:27017/quenote
+    ```
 
-4.  **Uygulamayı Başlatın:**
+4.  **MongoDB'yi Başlatın:**
+    MongoDB'nin sisteminizde çalıştığından emin olun. (Örneğin, `mongod` komutu ile başlatın.)
+
+5.  **Backend Sunucusunu Başlatın:**
     ```bash
+    npm start
     ```
+    Sunucu `http://localhost:5000` adresinde çalışacaktır.
+
+6.  **Frontend'i Açın:**
+    Tarayıcınızda `hackathon_trial/HalfByte/` klasöründeki HTML dosyalarını açın (örneğin, `main.html` veya `workspace_page.html`). Uygulama backend API'sine bağlanacaktır.
 
 ---
 
@@ -78,8 +95,3 @@ Katkılarınızı bekliyoruz! Lütfen önce bir `issue` açarak yapmak istediği
 * **Merve Salman** - *Backend & System Design* - [Github](https://github.com/mesalmann)
 * **Aleyna Say** - *Frontend* - [Github](https://github.com/lenas3)
 * **Zeynep Sıla Durak** - *Backend & Database* - [Github](https://github.com/zeynepsiladurak)
- ---
-
-##  Lisans
-
-Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
