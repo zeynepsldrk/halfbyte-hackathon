@@ -76,10 +76,9 @@ Katkılarınızı bekliyoruz! Lütfen önce bir `issue` açarak yapmak istediği
 
 * **Seyda Dadak** - *Leader & System Design* - [Github](https://github.com/sdadak42)
 * **Merve Salman** - *Backend & System Design* - [Github](https://github.com/mesalmann)
-* **Aleyna Say** - *Frondend* - [Github](https://github.com/lenas3)
-* **Zeynep Sıla Durak** - *Backend & Database * - [Github](https://github.com/zeynepsiladurak)
-
-* ---
+* **Aleyna Say** - *Frontend* - [Github](https://github.com/lenas3)
+* **Zeynep Sıla Durak** - *Backend & Database* - [Github](https://github.com/zeynepsiladurak)
+ ---
 
 ##  Lisans
 
