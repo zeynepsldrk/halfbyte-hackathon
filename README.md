@@ -11,10 +11,10 @@
 
 Proje temel olarak şu yetenekleri sunar:
 
-* ** Çalışma Alanları (Workspaces):** Kullanıcılar belirli bir konuya veya derse odaklanmış çalışma alanları oluşturabilir veya mevcut alanlara katılabilir.
-* ** Not Paylaşımı:** Hem kişisel notlarınızı tutabilir hem de çalışma alanındaki diğer kullanıcıların yüklediği notlara erişebilirsiniz.
-* ** Quiz Modülü:** Yüklenen notlar üzerinden otomatik veya manuel quizler oluşturarak kendinizi test edebilirsiniz.
-* ** Skor Görüntüleme:** Quiz sonuçlarını görüntüleyebilir kaç soru doğru kaç soru yanlış yaptığını öğrenebilir.
+* **Çalışma Alanları (Workspaces):** Kullanıcılar belirli bir konuya veya derse odaklanmış çalışma alanları oluşturabilir veya mevcut alanlara katılabilir.
+* **Not Paylaşımı:** Hem kişisel notlarınızı tutabilir hem de çalışma alanındaki diğer kullanıcıların yüklediği notlara erişebilirsiniz.
+* **Quiz Modülü:** Yüklenen notlar üzerinden otomatik veya manuel quizler oluşturarak kendinizi test edebilirsiniz.
+* **Skor Görüntüleme:** Quiz sonuçlarını görüntüleyebilir kaç soru doğru kaç soru yanlış yaptığını öğrenebilir.
 
 ---
 
@@ -28,7 +28,7 @@ Proje temel olarak şu yetenekleri sunar:
 Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin.
 
 ### Gereksinimler
-* * Git
+*  Git
 
 ### Adım Adım Kurulum
 
