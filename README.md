@@ -20,6 +20,7 @@ Proje temel olarak şu yetenekleri sunar:
 
 ## Ekran Videosu
 
+https://github.com/user-attachments/assets/284521ad-9f6a-4f9e-98fc-3206d25c657f
 
 ---
 
