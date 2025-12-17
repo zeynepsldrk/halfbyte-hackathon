@@ -92,7 +92,7 @@ Katkılarınızı bekliyoruz! Lütfen önce bir `issue` açarak yapmak istediği
 
 ##  Yazarlar
 
-* **Seyda Dadak** - *Leader & System Design* - [Github](https://github.com/sdadak42)
-* **Merve Salman** - *Backend & System Design* - [Github](https://github.com/mesalmann)
+* **Seyda Dadak** - *Lider ve Sistem Tasarımı* - [Github](https://github.com/sdadak42)
+* **Merve Salman** - *Backend ve Sistem tasarımı* - [Github](https://github.com/mesalmann)
 * **Aleyna Say** - *Frontend* - [Github](https://github.com/lenas3)
-* **Zeynep Sıla Durak** - *Backend & Database* - [Github](https://github.com/zeynepsiladurak)
+* **Zeynep Sıla Durak** - *Backend ve Veritabanı* - [Github](https://github.com/zeynepsiladurak)
